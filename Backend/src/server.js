@@ -13,8 +13,20 @@ const app = express();
 connectDB();
 
 // Middleware
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://ed-tech1.vercel.app',
+  process.env.CLIENT_URL?.replace(/\/$/, '')
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin.replace(/\/$/, ''))) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 app.use(express.json());
