@@ -109,7 +109,7 @@ const Admins = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg w-full max-w-md mx-4 shadow-xl">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+            <div className="flex items-center justify-between px-4 py-3">
               <h2 className="text-sm font-semibold text-gray-800">Add New Admin</h2>
               <button
                 onClick={() => setIsModalOpen(false)}

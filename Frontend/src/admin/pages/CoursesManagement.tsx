@@ -138,7 +138,7 @@ const CoursesManagement = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-2xl shadow-xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100 sticky top-0 bg-white">
+            <div className="flex items-center justify-between px-4 py-3 sticky top-0 bg-white">
               <h2 className="text-sm font-semibold text-gray-800">
                 {editingCourse ? "Edit Course" : "Add New Course"}
               </h2>

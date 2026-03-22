@@ -119,7 +119,7 @@ const Users = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg w-full max-w-md mx-4 shadow-xl">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+            <div className="flex items-center justify-between px-4 py-3">
               <h2 className="text-sm font-semibold text-gray-800">Add New Student</h2>
               <button onClick={() => setIsModalOpen(false)} className="p-1 hover:bg-gray-100 rounded-md">
                 <X size={18} className="text-gray-500" />

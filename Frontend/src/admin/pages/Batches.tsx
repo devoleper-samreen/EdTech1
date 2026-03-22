@@ -427,7 +427,7 @@ const Batches = () => {
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-xl w-full max-w-lg shadow-2xl max-h-[90vh] overflow-y-auto">
-            <div className="flex items-center justify-between p-4 border-b sticky top-0 bg-white">
+            <div className="flex items-center justify-between p-4 sticky top-0 bg-white">
               <h3 className="text-base sm:text-lg font-semibold text-gray-800">
                 {editingBatch ? 'Edit Batch' : 'Add New Batch'}
               </h3>

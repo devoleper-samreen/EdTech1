@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { motion } from "framer-motion";
 // @ts-ignore
 import { useAuth } from "../context/AuthContext";
-import { User, Mail, Lock, Phone } from "lucide-react";
+import { User, Mail, Lock, Phone, Eye, EyeOff } from "lucide-react";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Signup = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState("");
+  const [showPasswords, setShowPasswords] = useState({ password: false, confirmPassword: false });
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const digitsOnly = e.target.value.replace(/\D/g, "");
@@ -166,29 +167,40 @@ const Signup = () => {
               {phoneError && <p className="text-red-500 text-xs mt-1 ml-1">{phoneError}</p>}
             </motion.div>
 
-            {formFields.slice(2).map((field, index) => (
-              <motion.div
-                key={field.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
-              >
-                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
-                  {field.label}
-                </label>
-                <div className="relative">
-                  <field.icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
-                  <input
-                    type={field.type}
-                    value={formData[field.name as keyof typeof formData]}
-                    onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
-                    className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg outline-none focus:border-[#FA8128] focus:ring-2 focus:ring-[#FA8128]/20 transition-all"
-                    placeholder={field.placeholder}
-                    required={field.required}
-                  />
-                </div>
-              </motion.div>
-            ))}
+            {formFields.slice(2).map((field, index) => {
+              const key = field.name as "password" | "confirmPassword";
+              const visible = showPasswords[key];
+              return (
+                <motion.div
+                  key={field.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                >
+                  <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
+                    {field.label}
+                  </label>
+                  <div className="relative">
+                    <field.icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                    <input
+                      type={visible ? "text" : "password"}
+                      value={formData[field.name as keyof typeof formData]}
+                      onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+                      className="w-full pl-9 sm:pl-10 pr-10 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg outline-none focus:border-[#FA8128] focus:ring-2 focus:ring-[#FA8128]/20 transition-all"
+                      placeholder={field.placeholder}
+                      required={field.required}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => setShowPasswords({ ...showPasswords, [key]: !visible })}
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      {visible ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </motion.div>
+              );
+            })}
 
             <motion.button
               type="submit"

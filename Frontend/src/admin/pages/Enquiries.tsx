@@ -288,7 +288,7 @@ const Enquiries = () => {
       {selectedEnquiry && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md shadow-xl max-h-[90vh] overflow-y-auto">
-            <div className="p-4 border-b border-gray-100 sticky top-0 bg-white">
+            <div className="p-4 sticky top-0 bg-white">
               <h2 className="text-sm font-semibold text-gray-800">Enquiry Details</h2>
             </div>
             <div className="p-4 space-y-3">

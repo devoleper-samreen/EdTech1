@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 // @ts-ignore
 import { useAuth } from "../../context/AuthContext";
 import {
@@ -62,10 +62,10 @@ const StudentSidebar = ({ isOpen, onClose }: StudentSidebarProps) => {
       >
         {/* Logo */}
         <div className="px-4 py-3 border-b border-slate-700 flex items-center justify-between">
-          <h1 className="text-lg font-bold text-white">
+          <Link to="/" className="text-lg font-bold text-white hover:opacity-80 transition-opacity">
             Tech<span className="text-[#FA8128]">Fox</span>
             <span className="text-xs font-normal text-slate-400 ml-1">Student</span>
-          </h1>
+          </Link>
           {/* Close button - mobile only */}
           <button
             onClick={onClose}
