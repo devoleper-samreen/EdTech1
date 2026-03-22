@@ -22,79 +22,8 @@ interface Testimonial {
 }
 
 // Icons for hiring process
-const AssessmentIcon = () => (
-  <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
-    <rect x="12" y="8" width="28" height="36" rx="2" stroke="#6366f1" strokeWidth="2" fill="#e0e7ff"/>
-    <path d="M18 18h16M18 26h12M18 34h14" stroke="#6366f1" strokeWidth="2"/>
-    <circle cx="44" cy="36" r="12" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2"/>
-    <path d="M40 36h8M44 32v8" stroke="#3b82f6" strokeWidth="2"/>
-  </svg>
-);
-
-const TrainingIcon = () => (
-  <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
-    <rect x="8" y="12" width="20" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2"/>
-    <circle cx="18" cy="20" r="4" fill="#93c5fd"/>
-    <rect x="12" y="28" width="12" height="4" rx="1" fill="#93c5fd"/>
-    <rect x="36" y="12" width="20" height="24" rx="2" fill="#e0e7ff" stroke="#6366f1" strokeWidth="2"/>
-    <circle cx="46" cy="20" r="4" fill="#a5b4fc"/>
-    <rect x="40" y="28" width="12" height="4" rx="1" fill="#a5b4fc"/>
-    <circle cx="32" cy="44" r="8" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2"/>
-    <text x="32" y="48" textAnchor="middle" fill="#f59e0b" fontSize="12">?</text>
-  </svg>
-);
-
-const TrackingIcon = () => (
-  <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
-    <rect x="8" y="8" width="32" height="40" rx="2" fill="#d1fae5" stroke="#10b981" strokeWidth="2"/>
-    <path d="M14 32l6 6 12-14" stroke="#10b981" strokeWidth="2" fill="none"/>
-    <circle cx="48" cy="20" r="10" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2"/>
-    <path d="M48 14v6h6" stroke="#3b82f6" strokeWidth="2" fill="none"/>
-  </svg>
-);
-
-const AssignmentIcon = () => (
-  <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
-    <rect x="12" y="8" width="28" height="36" rx="2" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
-    <path d="M18 18h16M18 26h12M18 34h8" stroke="#ec4899" strokeWidth="2"/>
-    <path d="M36 28l8 8-8 8" stroke="#f59e0b" strokeWidth="2" fill="none"/>
-  </svg>
-);
-
-const HandshakeIcon = () => (
-  <svg width="50" height="50" viewBox="0 0 64 64" fill="none">
-    <rect x="8" y="16" width="20" height="24" rx="2" fill="#fef3c7" stroke="#f59e0b" strokeWidth="2"/>
-    <text x="18" y="32" textAnchor="middle" fill="#f59e0b" fontSize="14" fontWeight="bold">B</text>
-    <rect x="36" y="16" width="20" height="24" rx="2" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2"/>
-    <path d="M44 24v8M40 28h8" stroke="#3b82f6" strokeWidth="2"/>
-    <path d="M24 44h16" stroke="#9ca3af" strokeWidth="2"/>
-    <circle cx="32" cy="44" r="3" fill="#f59e0b"/>
-  </svg>
-);
 
 function HireFromUs() {
-  const steps = [
-    {
-      icon: <AssessmentIcon />,
-      title: "PreCourse Assessment",
-    },
-    {
-      icon: <TrainingIcon />,
-      title: "Conduct Training Program",
-    },
-    {
-      icon: <TrackingIcon />,
-      title: "Track Progress & Performance",
-    },
-    {
-      icon: <AssignmentIcon />,
-      title: "Conduct Assignment",
-    },
-    {
-      icon: <HandshakeIcon />,
-      title: "Hand hold and implement in project",
-    },
-  ];
 
   const domains = [
     { title: "AI & Machine Learning", color: "#FA8128" },

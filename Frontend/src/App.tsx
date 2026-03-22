@@ -9,6 +9,7 @@ import Signup from "./pages/Signup";
 import ContactUs from "./pages/ContactUs";
 import HireFromUs from "./pages/HireFromUs";
 import CorporateTraining from "./pages/CorporateTraining";
+import CRTProgram from "./pages/CRTProgram";
 import CourseDetails from "./pages/CourseDetails";
 import Courses from "./pages/Courses";
 
@@ -69,6 +70,7 @@ function App() {
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/hire-from-us" element={<HireFromUs />} />
         <Route path="/summer-internship" element={<CorporateTraining />} />
+        <Route path="/crt-program" element={<CRTProgram />} />
         <Route path="/course/:id" element={<CourseDetails />} />
         <Route path="/courses" element={<Courses />} />
 

@@ -50,33 +50,33 @@ const RealWorldIcon = () => (
 const features = [
   {
     icon: <TailoredIcon />,
-    title: "Tailored Programs",
-    description: "Customized training solutions to meet your unique business needs.",
-  },
-  {
-    icon: <SupportiveIcon />,
-    title: "Supportive Learning Environment",
-    description: "Supportive environment where learners are encouraged and guided every step of the way.",
+    title: "Structured Learning Path",
+    description: "21 days of intensive training followed by up to 24 days of real-time project work — a complete career-ready journey.",
   },
   {
     icon: <MeasurableIcon />,
     title: "Measurable Results",
-    description: "Participants will see measurable results that clearly demonstrate the program's impact.",
-  },
-  {
-    icon: <FlexibleIcon />,
-    title: "Flexible Delivery",
-    description: "On-site, online, and hybrid options to fit your schedule.",
+    description: "Participants build a strong project portfolio with Demo Day presentations that clearly showcase their growth and impact.",
   },
   {
     icon: <ExpertIcon />,
-    title: "Expert Instructors",
-    description: "Learn from industry leaders and experienced professionals.",
+    title: "Expert Mentorship",
+    description: "Learn directly from industry professionals, startup founders, and tech experts who guide you every step of the way.",
+  },
+  {
+    icon: <SupportiveIcon />,
+    title: "Industry-Recognized Certification",
+    description: "Receive an industry-recognized certificate and Letter of Internship that stands out to every recruiter and employer.",
+  },
+  {
+    icon: <FlexibleIcon />,
+    title: "Flexible Tech Domains",
+    description: "Choose your track — AI/ML, Data Science, IoT, AWS Cloud, Web Dev (MERN), Cyber Security, or CAD Design.",
   },
   {
     icon: <RealWorldIcon />,
-    title: "Real-World Application",
-    description: "Our programs emphasize hands-on learning for immediate real-world application.",
+    title: "Career Acceleration",
+    description: "Top performers get internship extensions, job referrals from partner companies, and national-level hackathon opportunities.",
   },
 ];
 

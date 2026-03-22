@@ -91,7 +91,7 @@ function Footer() {
               transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
             >
-              © 2025 TechFox All Rights Reserved
+              © 2026 TechFox All Rights Reserved
             </motion.p>
           </div>
 
