@@ -97,7 +97,7 @@ function Courses() {
       <Header />
 
       {/* Hero Section */}
-      <section className="max-w-[1280px] mx-auto w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 py-10 sm:py-12 md:py-16">
+      <section className="w-full bg-gradient-to-br from-orange-50 via-white to-orange-100 py-10 sm:py-12 md:py-16">
         <div className="w-full max-w-[1180px] mx-auto px-4 sm:px-6 text-center">
           <motion.h1
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-3 sm:mb-4"

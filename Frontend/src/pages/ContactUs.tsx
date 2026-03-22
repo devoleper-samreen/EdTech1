@@ -83,7 +83,7 @@ function ContactUs() {
 
       {/* Hero Section with Form */}
       <section
-        className="max-w-[1280px] mx-auto w-full relative bg-gray-50"
+        className="w-full relative bg-gray-50"
         style={{ paddingTop: "30px" }}
       >
         {/* Background - only 50vh height */}

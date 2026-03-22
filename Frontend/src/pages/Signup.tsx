@@ -18,6 +18,19 @@ const Signup = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState("");
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digitsOnly = e.target.value.replace(/\D/g, "");
+    if (digitsOnly.length <= 10) {
+      setFormData({ ...formData, phone: digitsOnly });
+      if (digitsOnly.length > 0 && digitsOnly.length !== 10) {
+        setPhoneError("Phone number must be exactly 10 digits");
+      } else {
+        setPhoneError("");
+      }
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,13 +46,18 @@ const Signup = () => {
       return;
     }
 
+    if (formData.phone && formData.phone.length !== 10) {
+      setPhoneError("Phone number must be exactly 10 digits");
+      return;
+    }
+
     setLoading(true);
     try {
       await signup({
         name: formData.name,
         email: formData.email,
         password: formData.password,
-        phone: formData.phone,
+        phone: formData.phone ? `+91${formData.phone}` : "",
       });
       toast.success("Account created successfully! Welcome aboard!");
       navigate("/");
@@ -55,13 +73,12 @@ const Signup = () => {
   const formFields = [
     { name: "name", label: "Full Name", icon: User, type: "text", placeholder: "Enter your full name", required: true },
     { name: "email", label: "Email Address", icon: Mail, type: "email", placeholder: "Enter your email", required: true },
-    { name: "phone", label: "Phone Number", icon: Phone, type: "tel", placeholder: "Enter your phone number", required: false },
     { name: "password", label: "Password", icon: Lock, type: "password", placeholder: "Create a password", required: true },
     { name: "confirmPassword", label: "Confirm Password", icon: Lock, type: "password", placeholder: "Confirm your password", required: true },
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-3 sm:px-4 py-4 sm:py-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center px-3 sm:px-4 py-4 sm:py-8">
       <motion.div
         className="max-w-md w-full"
         initial={{ opacity: 0, y: 20 }}
@@ -82,7 +99,7 @@ const Signup = () => {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
-              Macro <span className="text-[#FA8128]">Solutions</span>
+              Tech<span className="text-[#FA8128]">Fox</span>
             </h1>
             <p className="text-gray-600 mt-1.5 sm:mt-2 text-sm sm:text-base">Create your student account</p>
           </motion.div>
@@ -101,12 +118,60 @@ const Signup = () => {
 
           {/* Signup Form */}
           <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
-            {formFields.map((field, index) => (
+            {formFields.slice(0, 2).map((field, index) => (
               <motion.div
                 key={field.name}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+              >
+                <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
+                  {field.label}
+                </label>
+                <div className="relative">
+                  <field.icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                  <input
+                    type={field.type}
+                    value={formData[field.name as keyof typeof formData]}
+                    onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+                    className="w-full pl-9 sm:pl-10 pr-3 sm:pr-4 py-2.5 sm:py-3 text-sm sm:text-base border border-gray-300 rounded-lg outline-none focus:border-[#FA8128] focus:ring-2 focus:ring-[#FA8128]/20 transition-all"
+                    placeholder={field.placeholder}
+                    required={field.required}
+                  />
+                </div>
+              </motion.div>
+            ))}
+
+            {/* Phone Number Field */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, delay: 0.4 }}
+            >
+              <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
+                Phone Number
+              </label>
+              <div className={`flex items-center border rounded-lg transition-all ${phoneError ? "border-red-400 ring-2 ring-red-200" : "border-gray-300 focus-within:border-[#FA8128] focus-within:ring-2 focus-within:ring-[#FA8128]/20"}`}>
+                <Phone className="ml-3 text-gray-400 flex-shrink-0" size={16} />
+                <span className="ml-2 text-gray-600 text-sm font-medium border-r border-gray-300 pr-2 mr-1">🇮🇳 +91</span>
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={handlePhoneChange}
+                  className="flex-1 pr-3 py-2.5 sm:py-3 text-sm sm:text-base outline-none bg-transparent"
+                  placeholder="10-digit mobile number"
+                  maxLength={10}
+                />
+              </div>
+              {phoneError && <p className="text-red-500 text-xs mt-1 ml-1">{phoneError}</p>}
+            </motion.div>
+
+            {formFields.slice(2).map((field, index) => (
+              <motion.div
+                key={field.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
               >
                 <label className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                   {field.label}

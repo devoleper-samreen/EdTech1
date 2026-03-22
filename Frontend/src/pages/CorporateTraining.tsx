@@ -261,7 +261,7 @@ function CorporateTraining() {
       <Header />
 
       {/* HERO SECTION */}
-      <section className="max-w-[1280px] mx-auto w-full relative overflow-hidden">
+      <section className="w-full relative overflow-hidden">
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#fef3e2] via-[#fef9f3] to-white"></div>
 
@@ -383,6 +383,196 @@ function CorporateTraining() {
         </div>
       </section>
 
+      {/* Program Overview */}
+      <section className="w-full py-12 sm:py-16 bg-white">
+        <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6">
+          <motion.div
+            className="text-center mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-4">
+              TechFox Summer Internship Program
+            </h2>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto mb-2">
+              The TechFox Summer Internship Program is a structured training and internship initiative designed to help students gain hands-on industry experience in emerging technologies.
+            </p>
+            <p className="text-gray-600 text-sm sm:text-base leading-relaxed max-w-3xl mx-auto">
+              The program combines classroom learning, real-world projects, and mentorship from industry experts.
+            </p>
+          </motion.div>
+
+          {/* Program Structure */}
+          <motion.div
+            className="bg-gradient-to-br from-orange-50 to-white rounded-2xl border border-orange-100 p-6 sm:p-8 mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-5">Program Structure</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[
+                { label: "21 Days", sub: "Intensive Training" },
+                { label: "9–24 Days", sub: "Real-Time Project Work" },
+                { label: "1:1", sub: "Mentorship from Industry Professionals" },
+                { label: "Demo Day", sub: "Final Project Presentation" },
+              ].map((item, i) => (
+                <div key={i} className="bg-white rounded-xl p-4 shadow-sm border border-orange-100 text-center">
+                  <p className="text-2xl font-bold text-[#FA8128] mb-1">{item.label}</p>
+                  <p className="text-gray-600 text-sm">{item.sub}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-gray-500 text-sm mt-4 text-center">
+              Participants work on projects provided by industry partners and startups.
+            </p>
+          </motion.div>
+
+          {/* Domains + Benefits */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            {/* Internship Domains */}
+            <motion.div
+              className="bg-white rounded-2xl border border-gray-100 shadow-md p-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Internship Domains</h3>
+              <p className="text-gray-500 text-sm mb-4">Students can choose from the following technology tracks:</p>
+              <ul className="space-y-2">
+                {[
+                  "Artificial Intelligence / Machine Learning",
+                  "Data Science",
+                  "Internet of Things (IoT)",
+                  "AWS Cloud Computing",
+                  "Web Application Development (MERN Stack)",
+                  "Cyber Security",
+                  "CAD Design",
+                ].map((domain, i) => (
+                  <li key={i} className="flex items-center gap-2 text-gray-700 text-sm">
+                    <span className="text-[#FA8128] font-bold">✦</span> {domain}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Program Benefits */}
+            <motion.div
+              className="bg-white rounded-2xl border border-gray-100 shadow-md p-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Program Benefits</h3>
+              <p className="text-gray-500 text-sm mb-4">Participants receive:</p>
+              <ul className="space-y-2">
+                {[
+                  "Industry recognized certificate",
+                  "Letter of Internship",
+                  "Hands-on project experience",
+                  "Mentorship from industry experts",
+                  "Networking opportunities",
+                  "Top performer awards",
+                  "Internship extensions for top candidates",
+                  "Job referrals from partner companies",
+                ].map((benefit, i) => (
+                  <li key={i} className="flex items-center gap-2 text-gray-700 text-sm">
+                    <span className="text-[#FA8128] font-bold">✦</span> {benefit}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Why Participate + Who Can Participate */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+            <motion.div
+              className="bg-orange-50 rounded-2xl border border-orange-100 p-6"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Why Participate?</h3>
+              <p className="text-gray-500 text-sm mb-4">TechFox offers a unique platform for students to:</p>
+              <ul className="space-y-2">
+                {[
+                  "Build real-world technology solutions",
+                  "Gain industry exposure",
+                  "Work with mentors and experts",
+                  "Compete in national-level hackathons",
+                  "Develop a strong project portfolio",
+                  "Access internship and career opportunities",
+                ].map((point, i) => (
+                  <li key={i} className="flex items-center gap-2 text-gray-700 text-sm">
+                    <span className="text-[#FA8128] font-bold">✦</span> {point}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            <motion.div
+              className="bg-orange-50 rounded-2xl border border-orange-100 p-6"
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-xl font-bold text-gray-800 mb-4">Who Can Participate?</h3>
+              <p className="text-gray-500 text-sm mb-4">TechFox programs are open to:</p>
+              <ul className="space-y-2">
+                {[
+                  "Engineering Students",
+                  "Computer Science Students",
+                  "Technology Enthusiasts",
+                  "Developers and Innovators",
+                  "Startup Builders",
+                  "AI & Data Science Learners",
+                ].map((who, i) => (
+                  <li key={i} className="flex items-center gap-2 text-gray-700 text-sm">
+                    <span className="text-[#FA8128] font-bold">✦</span> {who}
+                  </li>
+                ))}
+              </ul>
+              <p className="text-gray-500 text-xs mt-4">Participants can join as individuals or teams depending on the program.</p>
+            </motion.div>
+          </div>
+
+          {/* Industry Collaboration */}
+          <motion.div
+            className="bg-white rounded-2xl border border-gray-100 shadow-md p-6 sm:p-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-3">Industry Collaboration</h3>
+            <p className="text-gray-500 text-sm mb-5">TechFox actively collaborates with:</p>
+            <div className="flex flex-wrap gap-3">
+              {[
+                "Technology Companies",
+                "Startup Ecosystems",
+                "University Innovation Cells",
+                "Developer Communities",
+                "Industry Mentors",
+              ].map((item, i) => (
+                <span key={i} className="bg-orange-50 border border-orange-200 text-[#FA8128] text-sm font-medium px-4 py-2 rounded-full">
+                  {item}
+                </span>
+              ))}
+            </div>
+            <p className="text-gray-500 text-sm mt-4">
+              These collaborations enable real problem statements, project mentorship, and hiring opportunities for participants.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Hiring Partners */}
       <HiringPartners />
 
@@ -390,7 +580,7 @@ function CorporateTraining() {
       <ModesWeTrain />
 
       {/* Internship Programs Section */}
-      <section className="max-w-[1280px] mx-auto w-full py-16 bg-white">
+      <section className="w-full py-16 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
           Internship Programs
         </h2>
@@ -479,7 +669,7 @@ function CorporateTraining() {
       </section>
 
       {/* Corporate Training Features Section */}
-      <section className="max-w-[1280px] mx-auto w-full py-12 sm:py-16 bg-white relative overflow-hidden">
+      <section className="w-full py-12 sm:py-16 bg-white relative overflow-hidden">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 sm:mb-16 px-4">
           TechFox Summer Internship Features
         </h2>
@@ -515,7 +705,7 @@ function CorporateTraining() {
             <div className="w-[140px] h-[140px] xl:w-[160px] xl:h-[160px] rounded-full bg-gradient-to-br from-orange-100 to-orange-50 border-2 border-orange-200 flex items-center justify-center shadow-xl">
               <div className="text-center">
                 <div className="text-lg xl:text-xl font-bold text-gray-800 text-center leading-tight">
-                  Macro<br/>Solutions
+                  Tech<span className="text-[#FA8128]">Fox</span>
                 </div>
               </div>
             </div>
@@ -607,7 +797,7 @@ function CorporateTraining() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="max-w-[1280px] mx-auto w-full py-16 bg-gray-50">
+      <section className="w-full py-16 bg-gray-50">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
           Intern Testimonials
         </h2>

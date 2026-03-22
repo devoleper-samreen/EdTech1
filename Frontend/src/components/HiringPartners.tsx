@@ -17,7 +17,7 @@ const partners = [
 
 function HiringPartners() {
   return (
-    <section className="max-w-[1280px] mx-auto w-full py-12 sm:py-16 md:py-20 bg-[#fff7f0] overflow-hidden">
+    <section className="w-full py-12 sm:py-16 md:py-20 bg-[#fff7f0] overflow-hidden">
       <div className="w-full px-4 sm:px-6 md:px-10 mb-10 sm:mb-12 md:mb-16">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 text-center">
           Our Hiring Partners

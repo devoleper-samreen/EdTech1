@@ -27,6 +27,30 @@ interface Category {
   status: string;
 }
 
+const staticCategories = [
+  { _id: "ai-ml", name: "AI & ML", status: "Active" },
+  { _id: "data-science", name: "Data Science", status: "Active" },
+  { _id: "iot", name: "Internet of Things (IoT)", status: "Active" },
+  { _id: "software-dev", name: "Software Development", status: "Active" },
+  { _id: "aws", name: "AWS Cloud Computing", status: "Active" },
+  { _id: "cyber-security", name: "Cyber Security", status: "Active" },
+  { _id: "devops", name: "DevOps", status: "Active" },
+];
+
+const staticCourses: Course[] = [
+  { _id: "s1", title: "AIML Master Course", description: "Master Artificial Intelligence & Machine Learning with hands-on projects and real-world applications.", rating: 4.8, category: { _id: "ai-ml", name: "AI & ML" } },
+  { _id: "s2", title: "AI ML Complete Course", description: "Complete guide to AI and ML — from fundamentals to advanced deep learning techniques.", rating: 4.7, category: { _id: "data-science", name: "Data Science" } },
+  { _id: "s3", title: "Data Analytics", description: "Learn data analysis, visualization, and insights extraction using modern tools and techniques.", rating: 4.6, category: { _id: "data-science", name: "Data Science" } },
+  { _id: "s4", title: "Power BI & Tableau", description: "Build stunning dashboards and business intelligence reports with Power BI and Tableau.", rating: 4.7, category: { _id: "data-science", name: "Data Science" } },
+  { _id: "s5", title: "Internet of Things (IoT)", description: "Explore IoT architecture, sensors, embedded systems, and real-world connected device projects.", rating: 4.5, category: { _id: "iot", name: "Internet of Things (IoT)" } },
+  { _id: "s6", title: "Python Full Stack", description: "Build full-stack web applications using Python, Django, REST APIs, and modern frontend tools.", rating: 4.8, category: { _id: "software-dev", name: "Software Development" } },
+  { _id: "s7", title: "Java Full Stack", description: "Master Java, Spring Boot, Microservices, and frontend frameworks for enterprise-level development.", rating: 4.7, category: { _id: "software-dev", name: "Software Development" } },
+  { _id: "s8", title: "MERN Stack", description: "Build modern web apps with MongoDB, Express, React, and Node.js from scratch.", rating: 4.8, category: { _id: "software-dev", name: "Software Development" } },
+  { _id: "s9", title: "AWS Cloud Computing", description: "Get hands-on with AWS services — EC2, S3, Lambda, RDS, and prepare for AWS certifications.", rating: 4.7, category: { _id: "aws", name: "AWS Cloud Computing" } },
+  { _id: "s10", title: "Cyber Security", description: "Learn ethical hacking, network security, penetration testing, and cyber defense strategies.", rating: 4.6, category: { _id: "cyber-security", name: "Cyber Security" } },
+  { _id: "s11", title: "DevOps Engineering", description: "Master CI/CD, Docker, Kubernetes, Jenkins, and cloud infrastructure automation.", rating: 4.7, category: { _id: "devops", name: "DevOps" } },
+];
+
 function ExploreCourses() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [isEnrollOpen, setIsEnrollOpen] = useState(false);
@@ -47,13 +71,15 @@ function ExploreCourses() {
         courseService.getAllCourses({ status: 'published', limit: 100 }),
         categoryService.getAllCategories()
       ]);
-      setCourses(coursesRes.data?.courses || coursesRes.data || []);
-      // Backend returns data directly as array, not data.categories
+      const backendCourses = coursesRes.data?.courses || coursesRes.data || [];
+      const allCourses = backendCourses.length > 0 ? backendCourses : staticCourses;
+      setCourses(allCourses);
+
       const allCategories = categoriesRes.data || [];
-      const activeCategories = Array.isArray(allCategories)
+      const backendCategories = Array.isArray(allCategories)
         ? allCategories.filter((c: Category) => c.status === 'Active')
         : [];
-      setCategories(activeCategories);
+      setCategories(backendCategories.length > 0 ? backendCategories : staticCategories);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -228,7 +254,7 @@ function ExploreCourses() {
                             e.stopPropagation();
                             handleCourseClick(course._id);
                           }}
-                          className="flex-1 border-2 border-[#FA8128] text-[#FA8128] hover:bg-blue-50 font-medium py-2 px-4 rounded-lg transition-colors text-[12px]"
+                          className="flex-1 border-2 border-[#FA8128] text-[#FA8128] hover:bg-orange-50 font-medium py-2 px-4 rounded-lg transition-colors text-[12px]"
                         >
                           Know more
                         </button>

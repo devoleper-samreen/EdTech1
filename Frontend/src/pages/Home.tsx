@@ -1,11 +1,10 @@
 import Header from '../components/Header'
 import Hero from '../components/Hero'
-import HiringPartners from '../components/HiringPartners'
+import InternshipFeatures from '../components/InternshipFeatures'
 import ExploreCourses from '../components/ExploreCourses'
 import ModesWeTrain from '../components/ModesWeTrain'
+import HiringPartners from '../components/HiringPartners'
 import WhyChooseUs from '../components/WhyChooseUs'
-import FacultyGuidance from '../components/FacultyGuidance'
-import IndustryTraining from '../components/IndustryTraining'
 import Testimonials from '../components/Testimonials'
 import FAQ from '../components/FAQ'
 import Footer from '../components/Footer'
@@ -16,12 +15,11 @@ function Home() {
     <div>
       <Header />
       <Hero />
-      <HiringPartners />
+      <InternshipFeatures />
       <ExploreCourses />
       <ModesWeTrain />
       <WhyChooseUs />
-      <FacultyGuidance />
-      <IndustryTraining />
+      <HiringPartners />
       <Testimonials />
       <FAQ />
       <Footer />

@@ -48,7 +48,7 @@ const socialLinks = [
 function Footer() {
   return (
     <motion.footer
-      className="max-w-[1280px] mx-auto w-full bg-[#0f172a] py-5 sm:py-6"
+      className="w-full bg-[#0f172a] py-5 sm:py-6"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}

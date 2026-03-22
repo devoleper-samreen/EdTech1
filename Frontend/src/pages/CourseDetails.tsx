@@ -187,7 +187,7 @@ function CourseDetails() {
       <Header />
 
       {/* Hero Section */}
-      <section className="max-w-[1280px] mx-auto w-full bg-[#fef7f0]">
+      <section className="w-full bg-[#fef7f0]">
         <div className="w-full max-w-[1100px] mx-auto px-6 py-12">
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Left Content */}
@@ -441,7 +441,7 @@ function CourseDetails() {
       </section>
 
       {/* Highlights about the Course */}
-      <section className="max-w-[1280px] mx-auto w-full py-12 bg-gray-50">
+      <section className="w-full py-12 bg-gray-50">
         <div className="w-full max-w-[1100px] mx-auto px-6">
           <motion.h2
             className="text-2xl font-bold text-gray-800 mb-8"

@@ -6,7 +6,7 @@ import CallbackModal from "./CallbackModal";
 function Hero() {
   const [isCallbackOpen, setIsCallbackOpen] = useState(false);
   return (
-    <section className="max-w-[1280px] mx-auto w-full px-4 sm:px-6 md:px-10 min-h-[calc(100vh-80px)] sm:min-h-screen bg-gradient-to-br from-orange-50 via-white to-orange-100 relative overflow-hidden pt-0" >
+    <section className="w-full bg-gradient-to-br from-orange-50 via-white to-orange-100 relative overflow-hidden" ><div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-10 pt-12 pb-10 sm:pb-16">
       {/* Background decorative circles */}
       <div className="absolute top-20 left-10 w-64 h-64 bg-orange-200/30 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 right-10 w-80 h-80 bg-orange-300/20 rounded-full blur-3xl"></div>
@@ -29,30 +29,53 @@ function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
-              <span className="italic font-light">Largest Software</span>
-              <br />
-              <span className="italic text-[#FA8128] relative inline-block mt-2">
-                Training Organization
+            {/* Tagline Badge */}
+            <motion.div
+              className="inline-flex items-center gap-2 bg-orange-100 text-[#FA8128] text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full mb-4"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              ✦ Where Students Become Industry Professionals
+            </motion.div>
+
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-gray-800 leading-tight">
+              Launch Your Career.{" "}
+              <span className="text-[#FA8128] relative inline-block">
+                On Your Terms.
                 <span className="absolute bottom-0 left-0 w-full h-1 bg-[#FA8128] rounded-full"></span>
               </span>
             </h1>
 
-            <p className="mt-6 sm:mt-8 text-gray-600 text-sm sm:text-md leading-relaxed">
-              World's premier software training institution, dedicated to bridging
-              the gap between industry demands and academic curricula. With
-              centers worldwide, we provide a platform for young minds to
-              cultivate successful careers.
+            <p className="mt-3 text-lg sm:text-xl font-semibold text-gray-500 tracking-wide">
+              Learn. Build. Intern. Grow.
             </p>
 
-            <motion.button
-              onClick={() => setIsCallbackOpen(true)}
-              className="mt-4 sm:mt-6 bg-[#FA8128] hover:bg-[#FA8128] text-white font-semibold py-2.5 sm:py-3 px-8 sm:px-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Book a Demo
-            </motion.button>
+            <p className="mt-4 text-gray-600 text-sm sm:text-base leading-relaxed">
+              At TechFox, we turn ambitious students into industry-ready professionals.
+              Whether you're diving into our power-packed training programs or gaining
+              real-world experience through our Summer Internship Program — your career
+              journey starts here.
+            </p>
+
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <motion.a
+                href="/summer-internship"
+                className="bg-[#FA8128] text-white font-semibold py-2.5 px-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 text-sm sm:text-base text-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                📋 Apply for Internship
+              </motion.a>
+              <motion.button
+                onClick={() => setIsCallbackOpen(true)}
+                className="border-2 border-[#FA8128] text-[#FA8128] font-semibold py-2.5 px-8 rounded-lg hover:bg-orange-50 transition-all duration-300 text-sm sm:text-base"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Book a Demo
+              </motion.button>
+            </div>
           </motion.div>
 
           {/* Callback Modal */}
@@ -76,6 +99,7 @@ function Hero() {
           </motion.div>
         </div>
       </div>
+    </div>
     </section>
   );
 }

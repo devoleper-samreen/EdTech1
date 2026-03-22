@@ -8,20 +8,21 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
+    const storedUser = localStorage.getItem('user') || sessionStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
+  const login = async (email, password, rememberMe = true) => {
     try {
       const response = await authService.login({ email, password });
       if (response.success) {
         setUser(response.data.user);
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+        const storage = rememberMe ? localStorage : sessionStorage;
+        storage.setItem('token', response.data.token);
+        storage.setItem('user', JSON.stringify(response.data.user));
         return response.data.user;
       }
     } catch (error) {

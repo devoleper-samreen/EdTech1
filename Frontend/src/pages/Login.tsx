@@ -15,6 +15,7 @@ const Login = () => {
   });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +23,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const userData = await login(formData.email, formData.password);
+      const userData = await login(formData.email, formData.password, rememberMe);
       toast.success(`Welcome back, ${userData.name}!`);
 
       // Redirect based on role
@@ -41,7 +42,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center px-3 sm:px-4 py-6 sm:py-8">
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center px-3 sm:px-4 py-6 sm:py-8">
       <motion.div
         className="max-w-md w-full"
         initial={{ opacity: 0, y: 20 }}
@@ -62,7 +63,7 @@ const Login = () => {
             transition={{ duration: 0.4, delay: 0.2 }}
           >
             <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
-              Macro <span className="text-[#FA8128]">Solutions</span>
+              Tech<span className="text-[#FA8128]">Fox</span>
             </h1>
             <p className="text-gray-600 mt-1.5 sm:mt-2 text-sm sm:text-base">Welcome back! Please login</p>
           </motion.div>
@@ -130,7 +131,12 @@ const Login = () => {
               transition={{ duration: 0.4, delay: 0.5 }}
             >
               <label className="flex items-center">
-                <input type="checkbox" className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#FA8128] rounded" />
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-3.5 h-3.5 sm:w-4 sm:h-4 accent-[#FA8128] rounded"
+                />
                 <span className="ml-1.5 sm:ml-2 text-gray-600">Remember me</span>
               </label>
             </motion.div>

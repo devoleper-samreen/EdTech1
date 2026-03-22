@@ -97,18 +97,14 @@ function HireFromUs() {
   ];
 
   const domains = [
-    { title: "Software Developer", color: "#3b82f6" },
-    { title: "UI/UX Designer", color: "#ec4899" },
-    { title: "DevOps", color: "#8b5cf6" },
-    { title: "Cloud Engineer - Aws, Azure & GCP", color: "#06b6d4" },
-    { title: "Software Test Engineer", color: "#3b82f6" },
-    { title: "Automation Engineer", color: "#22c55e" },
-    { title: "Performance Test Engineer", color: "#14b8a6" },
-    { title: "Banking Insurance & Finance", color: "#0ea5e9" },
+    { title: "AI & Machine Learning", color: "#FA8128" },
     { title: "Data Science", color: "#f59e0b" },
-    { title: "Data Analytics", color: "#6366f1" },
-    { title: "Data Engineer", color: "#8b5cf6" },
-    { title: "AI/ML", color: "#f59e0b" },
+    { title: "Internet of Things (IoT)", color: "#22c55e" },
+    { title: "Software Development", color: "#8b5cf6" },
+    { title: "AWS Cloud Computing", color: "#06b6d4" },
+    { title: "Cyber Security", color: "#ef4444" },
+    { title: "DevOps", color: "#0ea5e9" },
+    { title: "Database & Analytics", color: "#14b8a6" },
   ];
 
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -214,7 +210,7 @@ function HireFromUs() {
 
       {/* HERO SECTION */}
       <section
-        className="max-w-[1280px] mx-auto w-full relative overflow-hidden"
+        className="w-full relative overflow-hidden"
       >
         {/* Background gradient */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#fef3e2] via-[#fef9f3] to-white">
@@ -375,63 +371,9 @@ function HireFromUs() {
       {/* Hiring Partners Section */}
       <HiringPartners />
 
-      {/* Hiring Process Section */}
-      <section className="max-w-[1280px] mx-auto w-full py-16 bg-[#f8fafc]">
-        <div className="flex items-center justify-center gap-2 mb-14">
-          <div className="w-4 h-4 rounded-full bg-[#FA8128]"></div>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
-            Hiring Process
-          </h2>
-        </div>
-
-        <div className="w-full max-w-[1100px] mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-4 md:gap-2">
-            {steps.map((step, index) => (
-              <div
-                key={index}
-                className="relative flex flex-col items-center"
-              >
-                {/* Circle with dashed border and solid arc */}
-                <div className="relative w-[160px] h-[160px]">
-                  {/* Dashed circle border */}
-                  <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#FA8128] opacity-50"></div>
-
-                  {/* Solid arc at bottom */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 160 160">
-                    <path
-                      d="M 20 130 A 70 70 0 0 1 140 130"
-                      fill="none"
-                      stroke="#FA8128"
-                      strokeWidth="4"
-                      strokeLinecap="round"
-                    />
-                  </svg>
-
-                  {/* Inner white circle with content */}
-                  <div className="absolute inset-3 bg-white rounded-full shadow-md flex flex-col items-center justify-center p-4">
-                    {step.icon}
-                    <p className="text-gray-700 font-semibold text-xs text-center mt-2 leading-tight">
-                      {step.title}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Arrow connector */}
-                {index !== steps.length - 1 && (
-                  <div className="hidden lg:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10">
-                    <div className="w-8 h-8 bg-[#FA8128] rounded-full flex items-center justify-center text-white">
-                      <ChevronRight size={18} />
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Domains Section */}
-      <section className="max-w-[1280px] mx-auto w-full py-12 sm:py-16 bg-[#fef7f4]">
+      <section className="w-full py-12 sm:py-16 bg-[#fef7f4]">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center text-gray-800 mb-10 sm:mb-14 px-4">
           Find our talents in different Domains
         </h2>
@@ -468,7 +410,7 @@ function HireFromUs() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="max-w-[1280px] mx-auto w-full py-16 bg-white">
+      <section className="w-full py-16 bg-white">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">
           Client Testimonials
         </h2>

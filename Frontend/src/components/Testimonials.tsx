@@ -13,6 +13,54 @@ interface Testimonial {
   rating: number;
 }
 
+const staticTestimonials: Testimonial[] = [
+  {
+    _id: "t1",
+    company: "Infosys",
+    contactPerson: "Rahul Sharma",
+    designation: "HR Manager",
+    rating: 5,
+    shortText: "TechFox provided us with exceptionally well-trained candidates. Their practical approach to training makes a real difference.",
+    fullText: "TechFox provided us with exceptionally well-trained candidates. Their practical approach to training makes a real difference in how quickly our new hires contribute to real projects. The students had strong fundamentals and hands-on experience that reduced our onboarding time significantly. We highly recommend TechFox to any company looking for skilled tech talent.",
+  },
+  {
+    _id: "t2",
+    company: "Wipro Technologies",
+    contactPerson: "Priya Nair",
+    designation: "Talent Acquisition Lead",
+    rating: 5,
+    shortText: "We've hired multiple TechFox graduates and every single one has exceeded our expectations. Their training quality is top-notch.",
+    fullText: "We've hired multiple TechFox graduates and every single one has exceeded our expectations. Their training quality is top-notch. Students come in with real project experience, problem-solving skills, and a professional attitude. TechFox is our go-to partner for fresh tech talent.",
+  },
+  {
+    _id: "t3",
+    company: "TCS",
+    contactPerson: "Amit Verma",
+    designation: "Technical Recruiter",
+    rating: 5,
+    shortText: "The students from TechFox are interview-ready from day one. Their confidence and technical skills stand out clearly.",
+    fullText: "The students from TechFox are interview-ready from day one. Their confidence and technical skills stand out clearly compared to candidates from other institutes. The placement team at TechFox is extremely cooperative and professional. We look forward to continuing this partnership.",
+  },
+  {
+    _id: "t4",
+    company: "Cognizant",
+    contactPerson: "Sneha Kulkarni",
+    designation: "Campus Hiring Manager",
+    rating: 4,
+    shortText: "TechFox graduates bring a strong mix of technical knowledge and soft skills. They adapt quickly and perform well in teams.",
+    fullText: "TechFox graduates bring a strong mix of technical knowledge and soft skills. They adapt quickly and perform well in teams. We were particularly impressed by their understanding of real-world tools and workflows. TechFox is doing great work in bridging the gap between academia and industry.",
+  },
+  {
+    _id: "t5",
+    company: "HCL Technologies",
+    contactPerson: "Deepak Menon",
+    designation: "Engineering Manager",
+    rating: 5,
+    shortText: "Partnering with TechFox has been a great experience. The quality of talent they produce is consistent and impressive.",
+    fullText: "Partnering with TechFox has been a great experience. The quality of talent they produce is consistent and impressive. Their students show up with hands-on project portfolios, clear communication skills, and a strong desire to grow. We have onboarded several TechFox alumni and are very satisfied with the results.",
+  },
+];
+
 function Testimonials() {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
@@ -27,7 +75,8 @@ function Testimonials() {
     setLoading(true);
     try {
       const response = await testimonialService.getActiveTestimonials();
-      setTestimonials(response.data || []);
+      const data = response.data || [];
+      setTestimonials(data.length > 0 ? data : staticTestimonials);
     } catch (error) {
       console.error("Error fetching testimonials:", error);
     } finally {
@@ -42,11 +91,6 @@ function Testimonials() {
   const scrollRight = () => {
     sliderRef.current?.scrollBy({ left: 350, behavior: "smooth" });
   };
-
-  // Don't render section if no testimonials
-  if (!loading && testimonials.length === 0) {
-    return null;
-  }
 
   return (
     <>
