@@ -91,9 +91,9 @@ export const createCallback = asyncHandler(async (req, res) => {
   });
 
   // Notify admin (non-blocking)
-  sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message }).catch(err =>
-    console.error('Callback email failed:', err.message)
-  );
+  sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message })
+    .then(() => console.error('[CALLBACK] Email sent successfully'))
+    .catch(err => console.error('[CALLBACK] Email failed:', err.message));
 
   res.status(201).json({
     success: true,

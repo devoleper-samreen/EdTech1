@@ -1,19 +1,15 @@
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
-const getTransporter = () => nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 const adminEmail = () => process.env.EMAIL_USER;
 
 // Admin notification — new enrollment
 export const sendEnrollmentEmail = async ({ name, email, phone, course, message }) => {
-  const mailOptions = {
-    from: process.env.EMAIL_FROM,
+  console.error('[EMAIL] sendEnrollmentEmail called, admin:', adminEmail());
+
+  await getResend().emails.send({
+    from: 'TechFox <onboarding@resend.dev>',
     to: adminEmail(),
     subject: `New Enrollment Request – ${course}`,
     html: `
@@ -38,15 +34,17 @@ export const sendEnrollmentEmail = async ({ name, email, phone, course, message 
         </div>
       </div>
     `,
-  };
+  });
 
-  await getTransporter().sendMail(mailOptions);
+  console.error('[EMAIL] Enrollment email sent!');
 };
 
 // Admin notification — new callback request
 export const sendCallbackEmail = async ({ name, email, phone, type, company, requiredTraining, message }) => {
-  const mailOptions = {
-    from: process.env.EMAIL_FROM,
+  console.error('[EMAIL] sendCallbackEmail called, admin:', adminEmail());
+
+  await getResend().emails.send({
+    from: 'TechFox <onboarding@resend.dev>',
     to: adminEmail(),
     subject: `New Callback Request – ${type || 'General'}`,
     html: `
@@ -73,7 +71,7 @@ export const sendCallbackEmail = async ({ name, email, phone, type, company, req
         </div>
       </div>
     `,
-  };
+  });
 
-  await getTransporter().sendMail(mailOptions);
+  console.error('[EMAIL] Callback email sent!');
 };
