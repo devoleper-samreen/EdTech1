@@ -1,5 +1,6 @@
 import Enrollment from '../models/Enrollment.js';
 import asyncHandler from '../utils/asyncHandler.js';
+import { sendEnrollmentEmail } from '../utils/emailService.js';
 
 // @desc    Get all enrollments
 // @route   GET /api/enrollments
@@ -87,6 +88,11 @@ export const createEnrollment = asyncHandler(async (req, res) => {
     course,
     message: message || ''
   });
+
+  // Send confirmation email (non-blocking)
+  sendEnrollmentEmail({ name, email, phone, course, message }).catch(err =>
+    console.error('Enrollment email failed:', err.message)
+  );
 
   res.status(201).json({
     success: true,

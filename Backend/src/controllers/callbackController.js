@@ -1,5 +1,6 @@
 import CallbackRequest from '../models/CallbackRequest.js';
 import asyncHandler from '../utils/asyncHandler.js';
+import { sendCallbackEmail } from '../utils/emailService.js';
 
 // @desc    Get all callback requests
 // @route   GET /api/callbacks
@@ -88,6 +89,11 @@ export const createCallback = asyncHandler(async (req, res) => {
     requiredTraining: requiredTraining || '',
     message: message || ''
   });
+
+  // Notify admin (non-blocking)
+  sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message }).catch(err =>
+    console.error('Callback email failed:', err.message)
+  );
 
   res.status(201).json({
     success: true,
