@@ -70,6 +70,7 @@ export const getCallback = asyncHandler(async (req, res) => {
 // @route   POST /api/callbacks
 // @access  Public
 export const createCallback = asyncHandler(async (req, res) => {
+  console.log('[CALLBACK] Request received:', req.body);
   const { name, phone, email, type, company, requiredTraining, message } = req.body;
 
   // Validation

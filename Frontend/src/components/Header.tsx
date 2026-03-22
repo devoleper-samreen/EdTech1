@@ -1,4 +1,4 @@
-import { Menu, X, ChevronRight, Flame, Code, LogOut, LayoutDashboard } from "lucide-react";
+import { Menu, X, ChevronRight, Flame, Code, LogOut, LayoutDashboard, User } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 // @ts-ignore
@@ -7,6 +7,8 @@ import { useAuth } from "../context/AuthContext";
 import { courseService } from "../services/courseService";
 // @ts-ignore
 import { categoryService } from "../services/categoryService";
+// @ts-ignore
+import { authService } from "../services/authService";
 
 
 interface Course {
@@ -41,6 +43,9 @@ function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [coursesOpen, setCoursesOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
+  const [bioOpen, setBioOpen] = useState(false);
+  const [bioData, setBioData] = useState<any>(null);
+  const [bioLoading, setBioLoading] = useState(false);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [courses, setCourses] = useState<Course[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -83,6 +88,20 @@ function Header() {
     logout();
     setProfileOpen(false);
     navigate("/");
+  };
+
+  const handleBioOpen = async () => {
+    setProfileOpen(false);
+    setBioOpen(true);
+    setBioLoading(true);
+    try {
+      const res = await authService.getBio();
+      setBioData(res.data);
+    } catch {
+      setBioData(null);
+    } finally {
+      setBioLoading(false);
+    }
   };
 
   const getInitials = (name: string) => {
@@ -208,6 +227,13 @@ function Header() {
                       <LayoutDashboard size={16} />
                       {user.role === 'admin' ? 'Admin Panel' : 'My Dashboard'}
                     </Link>
+                    <button
+                      onClick={handleBioOpen}
+                      className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+                    >
+                      <User size={16} />
+                      My Profile
+                    </button>
                     <button
                       onClick={handleLogout}
                       className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
@@ -399,6 +425,45 @@ function Header() {
           </div>
         )}
       </nav>
+
+      {/* Bio Modal */}
+      {bioOpen && (
+        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4" onClick={() => setBioOpen(false)}>
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-lg font-bold text-gray-800">My Profile</h2>
+              <button onClick={() => setBioOpen(false)} className="text-gray-400 hover:text-gray-600"><X size={20} /></button>
+            </div>
+            {bioLoading ? (
+              <div className="text-center py-8 text-gray-400 text-sm">Loading...</div>
+            ) : bioData ? (
+              <div className="space-y-3">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 bg-[#FA8128] rounded-full flex items-center justify-center text-white text-2xl font-bold">
+                    {bioData.name?.[0]?.toUpperCase()}
+                  </div>
+                </div>
+                {[
+                  { label: "Name", value: bioData.name },
+                  { label: "Email", value: bioData.email },
+                  { label: "Phone", value: bioData.phone },
+                  { label: "Role", value: bioData.role },
+                  { label: "Enrolled Courses", value: bioData.enrolledCourses },
+                  { label: "Member Since", value: new Date(bioData.memberSince).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' }) },
+                  { label: "Last Login", value: bioData.lastLogin ? new Date(bioData.lastLogin).toLocaleString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : '—' },
+                ].map((item, i) => (
+                  <div key={i} className="flex justify-between text-sm border-b border-gray-50 pb-2">
+                    <span className="text-gray-400">{item.label}</span>
+                    <span className="font-medium text-gray-700 capitalize">{item.value}</span>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8 text-red-400 text-sm">Failed to load profile.</div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* Backdrop */}
       {coursesOpen && (
