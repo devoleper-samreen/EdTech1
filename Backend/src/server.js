@@ -59,7 +59,9 @@ app.get('/api/health', (req, res) => {
   res.json({
     success: true,
     message: 'Server is healthy',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    emailConfigured: !!(process.env.EMAIL_USER && process.env.EMAIL_PASS),
+    emailUser: process.env.EMAIL_USER || 'NOT SET'
   });
 });
 

@@ -61,6 +61,7 @@ export const register = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 export const login = asyncHandler(async (req, res) => {
+  console.log('[LOGIN] Request received for:', req.body.email);
   const { email, password } = req.body;
 
   // Validation
@@ -75,6 +76,7 @@ export const login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
+    console.log('[LOGIN] User not found:', email);
     return res.status(401).json({
       success: false,
       message: 'Invalid credentials'
@@ -85,6 +87,7 @@ export const login = asyncHandler(async (req, res) => {
   const isPasswordValid = await comparePassword(password, user.password);
 
   if (!isPasswordValid) {
+    console.log('[LOGIN] Invalid password for:', email);
     return res.status(401).json({
       success: false,
       message: 'Invalid credentials'
@@ -105,6 +108,7 @@ export const login = asyncHandler(async (req, res) => {
 
   // Generate token
   const token = generateToken(user._id, user.role);
+  console.log('[LOGIN] Success for:', email, '| role:', user.role);
 
   res.status(200).json({
     success: true,
