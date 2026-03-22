@@ -17,6 +17,7 @@ const adminEmail = () => process.env.EMAIL_USER;
 
 // Admin notification — new enrollment
 export const sendEnrollmentEmail = async ({ name, email, phone, course, message }) => {
+  console.log('[EMAIL] sendEnrollmentEmail called, EMAIL_USER:', process.env.EMAIL_USER);
   const mailOptions = {
     from: process.env.EMAIL_FROM,
     to: adminEmail(),
@@ -45,11 +46,14 @@ export const sendEnrollmentEmail = async ({ name, email, phone, course, message 
     `,
   };
 
+  console.log('[EMAIL] Sending enrollment email to admin...');
   await getTransporter().sendMail(mailOptions);
+  console.log('[EMAIL] Enrollment email sent!');
 };
 
 // Admin notification — new callback request
 export const sendCallbackEmail = async ({ name, email, phone, type, company, requiredTraining, message }) => {
+  console.log('[EMAIL] sendCallbackEmail called, EMAIL_USER:', process.env.EMAIL_USER);
   const mailOptions = {
     from: process.env.EMAIL_FROM,
     to: adminEmail(),
@@ -80,5 +84,7 @@ export const sendCallbackEmail = async ({ name, email, phone, type, company, req
     `,
   };
 
+  console.log('[EMAIL] Sending callback email to admin...');
   await getTransporter().sendMail(mailOptions);
+  console.log('[EMAIL] Callback email sent!');
 };

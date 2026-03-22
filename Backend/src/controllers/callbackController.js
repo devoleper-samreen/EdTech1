@@ -70,6 +70,7 @@ export const getCallback = asyncHandler(async (req, res) => {
 // @route   POST /api/callbacks
 // @access  Public
 export const createCallback = asyncHandler(async (req, res) => {
+  console.log('[CALLBACK] Request received:', req.body);
   const { name, phone, email, type, company, requiredTraining, message } = req.body;
 
   // Validation
@@ -89,11 +90,13 @@ export const createCallback = asyncHandler(async (req, res) => {
     requiredTraining: requiredTraining || '',
     message: message || ''
   });
+  console.log('[CALLBACK] Saved to DB, id:', callback._id);
 
   // Notify admin (non-blocking)
-  sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message }).catch(err =>
-    console.error('Callback email failed:', err.message)
-  );
+  console.log('[CALLBACK] Triggering email to:', process.env.EMAIL_USER, '| EMAIL_PASS set:', !!process.env.EMAIL_PASS);
+  sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message })
+    .then(() => console.log('[CALLBACK] Email sent successfully'))
+    .catch(err => console.error('[CALLBACK] Email failed:', err.message, err.stack));
 
   res.status(201).json({
     success: true,

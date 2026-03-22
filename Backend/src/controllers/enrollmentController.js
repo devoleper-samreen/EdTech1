@@ -71,6 +71,7 @@ export const getEnrollment = asyncHandler(async (req, res) => {
 // @route   POST /api/enrollments
 // @access  Public
 export const createEnrollment = asyncHandler(async (req, res) => {
+  console.log('[ENROLLMENT] Request received:', req.body);
   const { name, email, phone, course, message } = req.body;
 
   // Validation
@@ -88,11 +89,13 @@ export const createEnrollment = asyncHandler(async (req, res) => {
     course,
     message: message || ''
   });
+  console.log('[ENROLLMENT] Saved to DB, id:', enrollment._id);
 
-  // Send confirmation email (non-blocking)
-  sendEnrollmentEmail({ name, email, phone, course, message }).catch(err =>
-    console.error('Enrollment email failed:', err.message)
-  );
+  // Notify admin (non-blocking)
+  console.log('[ENROLLMENT] Triggering email to:', process.env.EMAIL_USER, '| EMAIL_PASS set:', !!process.env.EMAIL_PASS);
+  sendEnrollmentEmail({ name, email, phone, course, message })
+    .then(() => console.log('[ENROLLMENT] Email sent successfully'))
+    .catch(err => console.error('[ENROLLMENT] Email failed:', err.message, err.stack));
 
   res.status(201).json({
     success: true,
