@@ -61,7 +61,7 @@ export const register = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 export const login = asyncHandler(async (req, res) => {
-  console.log('[LOGIN] Request received for:', req.body.email);
+  console.error('[LOGIN] Request received for:', req.body.email);
   const { email, password } = req.body;
 
   // Validation
@@ -76,7 +76,7 @@ export const login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (!user) {
-    console.log('[LOGIN] User not found:', email);
+    console.error('[LOGIN] User not found:', email);
     return res.status(401).json({
       success: false,
       message: 'Invalid credentials'
@@ -87,7 +87,7 @@ export const login = asyncHandler(async (req, res) => {
   const isPasswordValid = await comparePassword(password, user.password);
 
   if (!isPasswordValid) {
-    console.log('[LOGIN] Invalid password for:', email);
+    console.error('[LOGIN] Invalid password for:', email);
     return res.status(401).json({
       success: false,
       message: 'Invalid credentials'
@@ -108,7 +108,7 @@ export const login = asyncHandler(async (req, res) => {
 
   // Generate token
   const token = generateToken(user._id, user.role);
-  console.log('[LOGIN] Success for:', email, '| role:', user.role);
+  console.error('[LOGIN] Success for:', email, '| role:', user.role);
 
   res.status(200).json({
     success: true,
@@ -136,6 +136,29 @@ export const getMe = asyncHandler(async (req, res) => {
   res.status(200).json({
     success: true,
     data: user
+  });
+});
+
+// @desc    Get bio of logged in user
+// @route   GET /api/auth/bio
+// @access  Private
+export const getBio = asyncHandler(async (req, res) => {
+  console.log('[BIO] Request received for user id:', req.user.id);
+  const user = await User.findById(req.user.id);
+  console.log('[BIO] User fetched:', user?.email);
+
+  res.status(200).json({
+    success: true,
+    deployedAt: new Date().toISOString(),
+    data: {
+      name: user.name,
+      email: user.email,
+      phone: user.phone || '—',
+      role: user.role,
+      memberSince: user.createdAt,
+      lastLogin: user.lastLogin,
+      enrolledCourses: user.enrolledCourses?.length || 0,
+    }
   });
 });
 

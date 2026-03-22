@@ -92,17 +92,24 @@ export const createCallback = asyncHandler(async (req, res) => {
   });
   console.log('[CALLBACK] Saved to DB, id:', callback._id);
 
-  // Notify admin (non-blocking)
-  console.log('[CALLBACK] Triggering email to:', process.env.EMAIL_USER, '| EMAIL_PASS set:', !!process.env.EMAIL_PASS);
-  sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message })
-    .then(() => console.log('[CALLBACK] Email sent successfully'))
-    .catch(err => console.error('[CALLBACK] Email failed:', err.message, err.stack));
-
-  res.status(201).json({
-    success: true,
-    message: 'Callback request submitted successfully. We will call you soon.',
-    data: callback
-  });
+  // Notify admin (blocking - for debug)
+  try {
+    await sendCallbackEmail({ name, email, phone, type, company, requiredTraining, message });
+    res.status(201).json({
+      success: true,
+      message: 'Callback request submitted successfully. We will call you soon.',
+      emailStatus: 'sent',
+      data: callback
+    });
+  } catch (emailErr) {
+    res.status(201).json({
+      success: true,
+      message: 'Callback request submitted successfully. We will call you soon.',
+      emailStatus: 'failed',
+      emailError: emailErr.message,
+      data: callback
+    });
+  }
 });
 
 // @desc    Update callback request

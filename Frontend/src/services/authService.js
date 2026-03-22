@@ -29,4 +29,9 @@ export const authService = {
     const response = await api.put('/auth/update-password', passwords);
     return response.data;
   },
+
+  getBio: async () => {
+    const response = await api.get('/auth/bio');
+    return response.data;
+  },
 };
