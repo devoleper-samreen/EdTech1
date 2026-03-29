@@ -245,16 +245,16 @@ function ContactUs() {
               <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8">Contact Info</h3>
 
               {/* India */}
-              <div className="mb-6 sm:mb-8">
+              <div>
                 <h4 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">India</h4>
                 <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
                   <div className="flex items-start gap-2">
                     <Phone size={14} className="mt-1 flex-shrink-0" />
-                    <span className="break-words">9686119919, 9686700500, 9686800700</span>
+                    <span className="break-words">+91 7349141410</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <Mail size={14} className="mt-1 flex-shrink-0" />
-                    <span className="break-all">enquiry@macrosolutions.com</span>
+                    <span className="break-all">team@techfox.co</span>
                   </div>
                   <div className="flex items-start gap-2">
                     <MapPin size={14} className="mt-1 flex-shrink-0" />
@@ -262,47 +262,6 @@ function ContactUs() {
                       No. 91, 3rd Cross Basappa Layout, Govipuram Extn,
                       Kempegowda Nagar, Bengaluru, Karnataka - 560019
                     </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* United States */}
-              <div className="mb-6 sm:mb-8">
-                <h4 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">United States</h4>
-                <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
-                  <div className="flex items-start gap-2">
-                    <Phone size={14} className="mt-1 flex-shrink-0" />
-                    <span className="break-words">9686119919, 9686700500, 9686800700</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Mail size={14} className="mt-1 flex-shrink-0" />
-                    <span className="break-all">enquiry@macrosolutions.com</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <MapPin size={14} className="mt-1 flex-shrink-0" />
-                    <span>
-                      96 South Almaden Blvd, Suite 600, San Jose, California, CA
-                      95113
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* United Kingdom */}
-              <div>
-                <h4 className="font-semibold mb-3 sm:mb-4 text-base sm:text-lg">United Kingdom</h4>
-                <div className="space-y-2.5 sm:space-y-3 text-xs sm:text-sm">
-                  <div className="flex items-start gap-2">
-                    <Phone size={14} className="mt-1 flex-shrink-0" />
-                    <span>44 3332423091</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <Mail size={14} className="mt-1 flex-shrink-0" />
-                    <span className="break-all">enquiry@macrosolutions.com</span>
-                  </div>
-                  <div className="flex items-start gap-2">
-                    <MapPin size={14} className="mt-1 flex-shrink-0" />
-                    <span>1 Elmfield Park, Bromley - BR1 1LU, United Kingdom</span>
                   </div>
                 </div>
               </div>
